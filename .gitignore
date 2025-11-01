@@ -1,0 +1,8 @@
+*
+
+!.gitignore
+!*.md
+!*.sh
+!*.cpp
+!Makefile
+!*.toml

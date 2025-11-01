@@ -1,0 +1,25 @@
+[files]
+extend-exclude = [
+    "site_generator/cpprefjp/site/start_editing/contribution_stats_*"
+]
+
+[default.extend-words]
+yoru = "yoru"
+BA = "BA"
+countr = "countr"
+unexpect = "unexpect"
+numer = "numer"
+UE = "UE"
+parm = "parm"
+nd = "nd"
+Comput = "Comput"
+Hel = "Hel"
+aout = "aout"
+referencable = "referencable"
+BRE = "BRE"
+FUL = "FUL"
+SME = "SME"
+THA = "THA"
+YOR = "YOR"
+Pris = "Pris"
+hax = "hax"

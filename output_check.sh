@@ -1,0 +1,106 @@
+#!/bin/zsh -e
+
+ignore_list=(
+    codes/lang/cpp14/sized_deallocation.1.cpp14.txt
+    codes/reference/unordered_map/unordered_map/op_at.1.cpp11.txt
+    codes/reference/chrono/month/formatter.1.cpp20.txt
+    codes/reference/chrono/zoned_time/op_ostream.1.cpp20.txt
+    codes/reference/chrono/year_month_day/formatter.1.cpp20.txt
+    codes/reference/chrono/month_day/formatter.1.cpp20.txt
+    codes/reference/chrono/month_weekday/formatter.1.cpp20.txt
+    codes/reference/chrono/year_month_day_last/formatter.1.cpp20.txt
+    codes/reference/chrono/weekday/formatter.1.cpp20.txt
+    codes/reference/chrono/weekday_last/formatter.1.cpp20.txt
+    codes/reference/chrono/weekday_indexed/formatter.1.cpp20.txt
+    codes/reference/chrono/year/formatter.1.cpp20.txt
+    codes/reference/chrono/month_weekday_last/formatter.1.cpp20.txt
+    codes/reference/chrono/gps_time.3.cpp20.txt
+    codes/reference/chrono/month_day_last/formatter.1.cpp20.txt
+    codes/reference/chrono/hh_mm_ss/formatter.1.cpp20.txt
+    codes/reference/valarray/gslice_array/op_constructor.1.cpp03.txt
+    codes/reference/iterator/indirectly_writable.3.cpp20.txt
+    codes/reference/limits/numeric_limits/epsilon.1.cpp03.txt
+    codes/reference/limits/numeric_limits/quiet_nan.1.cpp03.txt
+    codes/reference/limits/numeric_limits/signaling_nan.1.cpp03.txt
+    codes/reference/filesystem/path/has_filename.2.cpp17.txt
+    codes/reference/filesystem/path/has_relative_path.2.cpp17.txt
+    codes/reference/filesystem/path/parent_path.2.cpp17.txt
+    codes/reference/filesystem/path/is_relative.2.cpp17.txt
+    codes/reference/filesystem/path/relative_path.2.cpp17.txt
+    codes/reference/filesystem/path/root_name.2.cpp17.txt
+    codes/reference/filesystem/path/iterator.2.cpp17.txt
+    codes/reference/filesystem/path/root_path.2.cpp17.txt
+    codes/reference/filesystem/path/end.2.cpp17.txt
+    codes/reference/filesystem/path/has_root_path.2.cpp17.txt
+    codes/reference/filesystem/path/has_root_directory.2.cpp17.txt
+    codes/reference/filesystem/path/has_root_name.2.cpp17.txt
+    codes/reference/filesystem/path/begin.2.cpp17.txt
+    codes/reference/filesystem/path/root_directory.2.cpp17.txt
+    codes/reference/filesystem/path/is_absolute.2.cpp17.txt
+    codes/reference/filesystem/path/filename.2.cpp17.txt
+    codes/reference/filesystem/path/make_preferred.2.cpp17.txt
+    codes/reference/filesystem/proximate.1.cpp17.txt
+    codes/reference/filesystem/relative.1.cpp17.txt
+    codes/reference/cerrno/errno.1.cpp03.txt
+    codes/reference/algorithm/random_shuffle.1.cpp03.txt
+    codes/reference/regex/regex_error/op_constructor.1.cpp11.txt
+    codes/reference/ios/defaultfloat.1.cpp11.txt
+    codes/reference/ios/showpoint.1.cpp03.txt
+    codes/reference/ios/uppercase.1.cpp03.txt
+    codes/reference/ios/ios_base/failure/what.1.cpp03.txt
+    codes/reference/ios/ios_base/failure/op_constructor.1.cpp03.txt
+    codes/reference/ios/ios_base/type-event.1.cpp03.txt
+    codes/reference/ios/ios_base/type-openmode.1.cpp03.txt
+    codes/reference/spanstream/basic_spanbuf.1.cpp23.txt
+    codes/reference/optional/optional/value.1.cpp17.txt
+    codes/reference/cstdio/scanf.1.cpp03.txt
+    codes/reference/cstdio/fscanf.1.cpp03.txt
+    codes/reference/format/basic_format_string.1.cpp23.txt
+    codes/reference/variant/variant_npos.1.cpp17.txt
+    codes/reference/cfenv/fe_towardzero.1.cpp11.txt
+    codes/reference/cfenv/fe_upward.1.cpp11.txt
+    codes/reference/cfenv/fe_downward.1.cpp11.txt
+    codes/reference/cfenv/fesetround.1.cpp11.txt
+    codes/reference/mutex/unique_lock/try_lock.1.cpp11.txt
+    codes/reference/string_view/basic_string_view/op_constructor.2.cpp17.txt
+    codes/reference/string_view/basic_string_view.3.cpp17.txt
+    codes/reference/random/subtract_with_carry_engine.1.cpp11.txt
+    codes/reference/random/gamma_distribution/alpha.1.cpp11.txt
+    codes/reference/random/gamma_distribution/beta.1.cpp11.txt
+    codes/reference/random/discard_block_engine/seed.1.cpp11.txt
+    codes/reference/random/independent_bits_engine/seed.1.cpp11.txt
+    codes/reference/random/shuffle_order_engine/seed.1.cpp11.txt
+    codes/reference/random/random_device/entropy.1.cpp11.txt
+    codes/reference/random/generate_canonical.1.cpp11.txt
+    codes/reference/random/linear_congruential_engine.1.cpp11.txt
+    codes/reference/random/mersenne_twister_engine/op_ostream.1.cpp11.txt
+    codes/reference/random/linear_congruential_engine/seed.1.cpp11.txt
+    codes/reference/thread/thread/op_destructor.1.cpp11.txt
+    codes/reference/thread/thread/id/formatter.1.cpp23.txt
+    codes/reference/exception/throw_with_nested.1.cpp11.txt
+    codes/reference/exception/nested_exception/rethrow_nested.1.cpp11.txt
+    codes/reference/exception/nested_exception/op_constructor.1.cpp11.txt
+    codes/reference/exception/nested_exception/nested_ptr.1.cpp11.txt
+    codes/reference/exception/nested_exception.1.cpp11.txt
+    codes/reference/exception/unexpected.1.cpp03.txt
+    codes/reference/exception/rethrow_if_nested.1.cpp11.txt
+)
+
+error_count=0
+for expected in $(find codes -name '*.txt'); do
+    if printf '%s\n' "${ignore_list[@]}" | grep -qxF "$expected"; then
+        continue
+    fi
+    actual="${expected%.txt}.stdout"
+    if [ ! -f "$actual" ]; then
+        continue
+    fi
+    if diff --unified --ignore-all-space "$expected" "$actual"; then
+    else
+        echo
+        error_count=$((error_count+1))
+    fi
+done
+if [ $error_count -ne 0 ]; then
+    echo "$error_count error$(if [ $error_count -ne 1 ]; then echo 's'; fi) generated." >&2
+fi
