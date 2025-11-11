@@ -81,7 +81,10 @@ FUTURE_LIST = \
 	codes/reference/utility/nontype_t.1.cpp26.cpp \
 	codes/module/std.3.cpp23.cpp \
 	codes/reference/print/print.2.cpp23.cpp \
-	codes/reference/print/println.2.cpp23.cpp
+	codes/reference/print/println.2.cpp23.cpp \
+	codes/reference/string/basic_string/subview.1.cpp26.cpp \
+	codes/reference/string/basic_string/subview.2.cpp26.cpp \
+	codes/reference/string_view/basic_string_view/subview.1.cpp26.cpp
 IGNORE_LIST = \
 	codes/article/platform/locales.1.cpp03.cpp \
 	codes/article/lib/at_thread_exit.1.cpp03.cpp \

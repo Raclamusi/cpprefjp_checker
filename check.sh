@@ -16,6 +16,8 @@ if [ "$1" = 'clean' ]; then
     exit 0
 fi
 
+(cd site_generator/cpprefjp/site && git pull upstream master)
+
 for stem in "${stems[@]}"; do
     src="$stem.cpp"
     exe="$stem"
