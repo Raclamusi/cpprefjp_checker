@@ -609,6 +609,51 @@ int main() {
                 if (text == "assoc-t" && href == "/reference/execution/execution/counting_scope.md") {
                     continue;
                 }
+                if (text == "execution::counting_scope" && href == "/reference/execution/execution/simple_counting_scope.md") {
+                    continue;
+                }
+                if (text == "stop_requested()" && href == "/reference/stop_token/stoppable_token.md") {
+                    continue;
+                }
+                if (text == "stop_possible()" && href == "/reference/stop_token/stoppable_token.md") {
+                    continue;
+                }
+                if (text == "stop_token::callback_type" && href == "/reference/stop_token/stoppable_token.md") {
+                    continue;
+                }
+                if (text == "state<Rcvr>::start" && href == "/reference/execution/execution/task/state.md") {
+                    continue;
+                }
+                if (text == "allocator_type" && href == "/reference/execution/execution/task.md") {
+                    continue;
+                }
+                if (text == "stop_source_type" && href == "/reference/execution/execution/task.md") {
+                    continue;
+                }
+                if (text == "error_types" && href == "/reference/execution/execution/task.md") {
+                    continue;
+                }
+                if (text == "scheduler" && href == "/reference/execution/execution/change_coroutine_scheduler.md") {
+                    continue;
+                }
+                if (text == "assoc-t" && href == "/reference/execution/execution/simple_counting_scope.md") {
+                    continue;
+                }
+                if (text == "get_token()" && href == "/reference/stop_token/stoppable-source.md") {
+                    continue;
+                }
+                if (text == "is-awaiter" && href == "/reference/execution/is-awaitable.md") {
+                    continue;
+                }
+                if (text == "extents_type::index_cast" && href == "/reference/mdspan/extents/index-cast.md") {
+                    continue;
+                }
+                if (text == "max()" && href == "/reference/random/uniform_random_bit_generator.md") {
+                    continue;
+                }
+                if (text == "min()" && href == "/reference/random/uniform_random_bit_generator.md") {
+                    continue;
+                }
                 // constexpr const char* alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_";
                 auto text_small = text;
                 std::ranges::transform(text_small, text_small.begin(), [](unsigned char c) {
