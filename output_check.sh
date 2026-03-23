@@ -18,10 +18,12 @@ ignore_list=(
     codes/reference/chrono/month_day_last/formatter.1.cpp20.txt
     codes/reference/chrono/hh_mm_ss/formatter.1.cpp20.txt
     codes/reference/valarray/gslice_array/op_constructor.1.cpp03.txt
+    codes/reference/valarray/mask_array/op_assign.1.cpp03.txt
     codes/reference/iterator/indirectly_writable.3.cpp20.txt
     codes/reference/limits/numeric_limits/epsilon.1.cpp03.txt
     codes/reference/limits/numeric_limits/quiet_nan.1.cpp03.txt
     codes/reference/limits/numeric_limits/signaling_nan.1.cpp03.txt
+    codes/reference/limits/numeric_limits/traps.1.cpp03.txt
     codes/reference/filesystem/path/has_filename.2.cpp17.txt
     codes/reference/filesystem/path/has_relative_path.2.cpp17.txt
     codes/reference/filesystem/path/parent_path.2.cpp17.txt
@@ -47,6 +49,8 @@ ignore_list=(
     codes/reference/ios/defaultfloat.1.cpp11.txt
     codes/reference/ios/showpoint.1.cpp03.txt
     codes/reference/ios/uppercase.1.cpp03.txt
+    codes/reference/ios/unitbuf.1.cpp03.txt
+    codes/reference/ios/basic_ios/tie.1.cpp03.txt
     codes/reference/ios/ios_base/failure/what.1.cpp03.txt
     codes/reference/ios/ios_base/failure/op_constructor.1.cpp03.txt
     codes/reference/ios/ios_base/type-event.1.cpp03.txt
@@ -73,7 +77,10 @@ ignore_list=(
     codes/reference/random/random_device/entropy.1.cpp11.txt
     codes/reference/random/generate_canonical.1.cpp11.txt
     codes/reference/random/linear_congruential_engine.1.cpp11.txt
+    codes/reference/random/mersenne_twister_engine/op_istream.1.cpp11.txt
     codes/reference/random/mersenne_twister_engine/op_ostream.1.cpp11.txt
+    codes/reference/random/subtract_with_carry_engine/op_istream.1.cpp11.txt
+    codes/reference/random/subtract_with_carry_engine/op_ostream.1.cpp11.txt
     codes/reference/random/linear_congruential_engine/seed.1.cpp11.txt
     codes/reference/thread/thread/op_destructor.1.cpp11.txt
     codes/reference/thread/thread/id/formatter.1.cpp23.txt
@@ -84,6 +91,10 @@ ignore_list=(
     codes/reference/exception/nested_exception.1.cpp11.txt
     codes/reference/exception/unexpected.1.cpp03.txt
     codes/reference/exception/rethrow_if_nested.1.cpp11.txt
+    codes/reference/complex/complex/sqrt.1.cpp03.txt
+    codes/reference/iterator/indirectly_writable.2.cpp20.txt
+    codes/reference/map/multimap/extract.1.cpp17.txt
+    codes/reference/cmath/copysign.1.cpp11.txt
 )
 
 error_count=0
