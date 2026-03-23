@@ -55,10 +55,14 @@ echo "$0: compiling examples..."
     fi
 )
 
-echo "$0: running examples..."
+echo "$0: running examples... (no checking)"
 (
     make -i -j8 exe >& make_exe.txt
     make -i -j8 run >& make_run.txt
+)
+
+echo "$0: checking output..."
+(
     ./output_check.sh > output_check.txt
 )
 

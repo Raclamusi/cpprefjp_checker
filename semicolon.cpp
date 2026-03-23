@@ -177,7 +177,7 @@ int main() {
                 auto code_first = s.find("```cpp") + 6;
                 auto code_last = s.find("```", code_first);
                 auto code = s.substr(code_first, code_last - code_first);
-                if (not (std::ranges::all_of(titles, [&](auto t) { return code.contains(t); }) || (title2.size() && code.contains(title2)) || code.contains("追加宣言なし"))) {
+                if (not (std::ranges::all_of(titles, [&](auto t) { return code.contains(t); }) || (title2.size() && code.contains(title2)) || code.contains("追加宣言なし") || code.contains("task<T, Environment>"))) {
                     print_error(code_first, "no title in first code");
                 }
                 if (code.contains("namespace ") && not title.contains('-') && metas["id-type"] != "namespace") {

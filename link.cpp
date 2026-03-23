@@ -594,6 +594,21 @@ int main() {
                 if (text == "token.wrap" && href == "/reference/execution/execution/scope_token.md") {
                     continue;
                 }
+                if (text == "template env_type" && href == "/reference/execution/execution/task.md") {
+                    continue;
+                }
+                if (text == "scheduler_type" && href == "/reference/execution/execution/task.md") {
+                    continue;
+                }
+                if (text == "scheduler_type" && href == "/reference/execution/execution/task.md") {
+                    continue;
+                }
+                if (text == "stop_token_type" && href == "/reference/execution/execution/task.md") {
+                    continue;
+                }
+                if (text == "assoc-t" && href == "/reference/execution/execution/counting_scope.md") {
+                    continue;
+                }
                 // constexpr const char* alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_";
                 auto text_small = text;
                 std::ranges::transform(text_small, text_small.begin(), [](unsigned char c) {
