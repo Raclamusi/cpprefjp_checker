@@ -654,6 +654,18 @@ int main() {
                 if (text == "min()" && href == "/reference/random/uniform_random_bit_generator.md") {
                     continue;
                 }
+                if (text == "id::UTF8" && href == "/reference/text_encoding/text_encoding/id.md") {
+                    continue;
+                }
+                if (text == "id::ShiftJIS" && href == "/reference/text_encoding/text_encoding/id.md") {
+                    continue;
+                }
+                if (text == "id::other" && href == "/reference/text_encoding/text_encoding/id.md") {
+                    continue;
+                }
+                if (text == "id::unknown" && href == "/reference/text_encoding/text_encoding/id.md") {
+                    continue;
+                }
                 // constexpr const char* alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_";
                 auto text_small = text;
                 std::ranges::transform(text_small, text_small.begin(), [](unsigned char c) {

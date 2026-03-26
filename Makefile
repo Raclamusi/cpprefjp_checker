@@ -29,6 +29,9 @@ define FUTURE_LIST
 	$(shell find codes/reference/stacktrace -name '*.cpp')
 	$(shell find codes/reference/stdfloat -name '*.cpp')
 	$(shell find codes/reference/stop_token -name '*.cpp26.cpp')
+	$(shell find codes/reference/text_encoding -name '*.cpp')
+	$(wildcard codes/reference/text_encoding.*.cpp)
+	codes/reference/locale/locale/encoding.1.cpp26.cpp
 
 	$(shell find codes/reference/ranges -path '*/adjacent_transform_view*.cpp')
 	$(shell find codes/reference/ranges -path '*/adjacent_view*.cpp')
