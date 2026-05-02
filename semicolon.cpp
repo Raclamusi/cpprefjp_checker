@@ -235,6 +235,7 @@ int main() {
                 bool in_comment = false;
                 bool in_block_comment = false;
                 bool in_string = false;
+                bool in_attribute = false;
                 for (; pos < s.size() && s.substr(pos, 3) != "```"; ++pos) {
                     if (in_block_comment) {
                         if (s.substr(pos, 2) == "*/") {
@@ -255,6 +256,13 @@ int main() {
                         }
                         if (s[pos] == '\n') {
                             in_string = false;
+                        }
+                        continue;
+                    }
+                    if (in_attribute) {
+                        if (s.substr(pos, 2) == "]]") {
+                            in_attribute = false;
+                            ++pos;
                         }
                         continue;
                     }
@@ -361,6 +369,9 @@ int main() {
                     }
                     else if (s[pos] == '"' && (pos == 0 || s[pos - 1] != '\\')) {
                         in_string = true;
+                    }
+                    else if (s.substr(pos, 2) == "[[") {
+                        in_attribute = true;
                     }
                     if (nest < 0) {
                         print_error(pos, "unmatched '}'");

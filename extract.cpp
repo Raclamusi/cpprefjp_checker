@@ -192,6 +192,22 @@ int main() {
             }
         }
     }
+    for (const auto& entry : fs::recursive_directory_iterator("codes/")) {
+        if (entry.is_regular_file() && entry.path().extension() == ".cpp") {
+            std::cerr << "\e[K" << entry.path().native().substr(0, 100) << "\r";
+
+            auto base_path = entry.path();
+            auto parent_path = std::format("site_generator/cpprefjp/site{}", base_path.parent_path().string().substr("codes"sv.size()));
+            auto path = std::format("{}/{}.md", parent_path, base_path.stem().stem().stem().string());
+            if (not fs::exists(path)) {
+                fs::remove(entry.path());
+                fs::remove(auto{ entry.path() }.replace_extension(".txt"));
+                fs::remove(auto{ entry.path() }.replace_extension(".stdout"));
+                fs::remove(auto{ entry.path() }.replace_extension(".o"));
+                fs::remove(auto{ entry.path() }.replace_extension(".out"));
+            }
+        }
+    }
     if (error_count) {
         std::cerr << "\e[K" << error_count << " error" << (error_count == 1 ? "" : "s") << " generated.\n";
     }

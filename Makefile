@@ -21,6 +21,7 @@ define FUTURE_LIST
 	$(shell find codes/reference/functional -name '*.cpp23.cpp')
 	$(shell find codes/reference/functional -name '*.cpp26.cpp')
 	$(shell find codes/reference/initializer_list/initializer_list -name '*.cpp26.cpp')
+	$(shell find codes/reference/inplace_vector -name '*.cpp')
 	$(shell find codes/reference/linalg -name '*.cpp')
 	$(shell find codes/reference/mdspan -name '*.cpp')
 	$(shell find codes/reference/random -name '*.cpp26.cpp')
