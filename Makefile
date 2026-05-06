@@ -1,5 +1,5 @@
-CXX = /opt/clang-head/bin/clang++
-CXXFLAGS := -std=c++26 -pthread -pedantic -Wno-attributes -Wno-parentheses
+CXX = /opt/gcc-head/bin/g++
+CXXFLAGS := -std=c++26 -fmodules -freflection -fcontracts -pthread -pedantic -Wno-attributes -Wno-parentheses
 
 # 将来実行できるようになるであろうが、今はコンパイルできないコードのリスト
 define FUTURE_LIST
@@ -16,9 +16,7 @@ define FUTURE_LIST
 	$(wildcard codes/lang/cpp26/contracts.*.cpp)
 	$(shell find codes/reference/atomic -name '*.cpp26.cpp')
 	$(shell find codes/reference/cmath -name '*.cpp26.cpp')
-	$(shell find codes/reference/debugging -name '*.cpp')
 	$(shell find codes/reference/execution/execution -name '*.cpp')
-	$(shell find codes/reference/functional -name '*.cpp23.cpp')
 	$(shell find codes/reference/functional -name '*.cpp26.cpp')
 	$(shell find codes/reference/initializer_list/initializer_list -name '*.cpp26.cpp')
 	$(shell find codes/reference/inplace_vector -name '*.cpp')
@@ -26,13 +24,8 @@ define FUTURE_LIST
 	$(shell find codes/reference/mdspan -name '*.cpp')
 	$(shell find codes/reference/random -name '*.cpp26.cpp')
 	$(shell find codes/reference/rcu -name '*.cpp')
-	$(shell find codes/reference/spanstream -name '*.cpp')
 	$(shell find codes/reference/stacktrace -name '*.cpp')
-	$(shell find codes/reference/stdfloat -name '*.cpp')
 	$(shell find codes/reference/stop_token -name '*.cpp26.cpp')
-	$(shell find codes/reference/text_encoding -name '*.cpp')
-	$(wildcard codes/reference/text_encoding.*.cpp)
-	codes/reference/locale/locale/encoding.1.cpp26.cpp
 
 	$(shell find codes/reference/ranges -path '*/adjacent_transform_view*.cpp')
 	$(shell find codes/reference/ranges -path '*/adjacent_view*.cpp')
@@ -153,6 +146,7 @@ define FUTURE_LIST
 	codes/reference/algorithm/ranges_min.2.cpp20.cpp
 	codes/reference/algorithm/ranges_min_element.2.cpp20.cpp
 	codes/reference/algorithm/ranges_minmax.2.cpp20.cpp
+	codes/reference/algorithm/ranges_minmax.3.cpp20.cpp
 	codes/reference/algorithm/ranges_minmax_element.2.cpp20.cpp
 	codes/reference/algorithm/ranges_mismatch.2.cpp20.cpp
 	codes/reference/algorithm/ranges_move.2.cpp20.cpp
@@ -259,6 +253,25 @@ define FUTURE_LIST
 	codes/reference/type_traits/is_applicable.1.cpp26.cpp
 	codes/reference/type_traits/is_nothrow_applicable.1.cpp26.cpp
 	codes/reference/utility/constant_arg_t.1.cpp26.cpp
+
+	codes/reference/type_traits/is_within_lifetime.1.cpp26.cpp
+	codes/reference/type_traits/reference_constructs_from_temporary.2.cpp23.cpp
+	codes/reference/scoped_allocator/scoped_allocator_adaptor/op_deduction_guide.1.cpp17.cpp
+	codes/reference/ostream/print.2.cpp23.cpp
+	codes/reference/ostream/println.2.cpp23.cpp
+	codes/reference/print/print.3.cpp23.cpp
+	codes/reference/print/println.3.cpp23.cpp
+	codes/reference/format/runtime_format.1.cpp26.cpp
+	codes/reference/format/format.7.cpp20.cpp
+	codes/reference/ranges/filter_view/iterator/op_constructor.1.cpp20.cpp
+	codes/reference/ranges/filter_view/iterator/op_increment.1.cpp20.cpp
+	codes/reference/ranges/filter_view/iterator/op_decrement.1.cpp20.cpp
+	codes/reference/ranges/filter_view/iterator/op_deref.1.cpp20.cpp
+	codes/reference/system_error/error_code/op_assign.1.cpp11.cpp
+	codes/reference/system_error/error_code/op_constructor.1.cpp11.cpp
+	$(wildcard codes/reference/numeric/*_sat.1.cpp26.cpp)
+	codes/reference/numeric/saturate_cast.1.cpp26.cpp
+	codes/reference/span/span/op_constructor.2.cpp20.cpp
 endef
 FUTURE_LIST := $(strip $(FUTURE_LIST))
 
@@ -356,6 +369,7 @@ define IGNORE_LIST
 	codes/reference/exception/set_unexpected.1.cpp03.cpp
 	codes/reference/exception/unexpected.1.cpp03.cpp
 	codes/reference/exception/uncaught_exception.1.cpp03.cpp
+	codes/reference/text_encoding.3.cpp26.cpp
 endef
 IGNORE_LIST := $(strip $(IGNORE_LIST)) ${FUTURE_LIST}
 

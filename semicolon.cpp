@@ -135,6 +135,10 @@ int main() {
                     title2.insert(pos + 8, " ");
                 }
             }
+            else if (title.contains('\\')) {
+                title2 = title;
+                std::erase(title2, '\\');
+            }
 
             if (title.size() && entry.path().native().starts_with("site_generator/cpprefjp/site/reference/") && std::ranges::count(entry.path().native(), '/') >= 5) {
                 std::string key;

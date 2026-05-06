@@ -95,6 +95,8 @@ ignore_list=(
     codes/reference/iterator/indirectly_writable.2.cpp20.txt
     codes/reference/map/multimap/extract.1.cpp17.txt
     codes/reference/cmath/copysign.1.cpp11.txt
+    codes/reference/string/to_string.1.cpp11.txt
+    codes/reference/string/to_wstring.1.cpp11.txt
 )
 
 error_count=0

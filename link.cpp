@@ -666,6 +666,9 @@ int main() {
                 if (text == "id::unknown" && href == "/reference/text_encoding/text_encoding/id.md") {
                     continue;
                 }
+                if (text == "MAP_RANK" && href == "/reference/mdspan/submdspan_canonicalize_slices.md") {
+                    continue;
+                }
                 // constexpr const char* alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_";
                 auto text_small = text;
                 std::ranges::transform(text_small, text_small.begin(), [](unsigned char c) {
@@ -860,6 +863,9 @@ int main() {
                 else if (text2.contains("cv_status::") && href2 == "/reference/condition_variable/cv_status.md") {
                     continue;
                 }
+                else if (text2.contains("endian::") && href2 == "/reference/bit/endian.md") {
+                    continue;
+                }
                 else if (text2.ends_with("_event") && href2 == "/reference/ios/ios_base/type-event.md") {
                     continue;
                 }
@@ -1026,6 +1032,10 @@ int main() {
                     if (href2.ends_with("-size_type") && not text2.contains("size_type")) {
                         href2.remove_suffix(10);
                     }
+                    if (text2.starts_with("__") && text2.ends_with("__") && std::ranges::all_of(text, [](char c) { return std::isupper(c) || c == '_'; })) {
+                        text2.remove_prefix(2);
+                        text2.remove_suffix(2);
+                    }
                     std::string t{ text2 };
                     if (t == href2) {
                         // No need to change
@@ -1155,6 +1165,15 @@ int main() {
                     else if ((t[0] == 'w' || t[0] == '_') && t.substr(1) == href2) {
                         t = t.substr(1);
                     }
+                    else if (t == "u8display_string_of") {
+                        t = "display_string_of";
+                    }
+                    else if (t == "u8identifier_of") {
+                        t = "identifier_of";
+                    }
+                    else if (t == "u8symbol_of") {
+                        t = "symbol_of";
+                    }
                     else if (t == "dextents" || t == "dims") {
                         t = "extents";
                     }
@@ -1184,6 +1203,9 @@ int main() {
                     }
                     else if (t == "binary_semaphore") {
                         t = "counting_semaphore";
+                    }
+                    else if (t == "cw") {
+                        t = "constant_wrapper";
                     }
                     else if (t.ends_with("_result") && href2.ends_with("_result")) {
                         t = href2;
