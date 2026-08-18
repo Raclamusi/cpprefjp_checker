@@ -321,7 +321,7 @@ int main() {
                         }
                         if (s[pos] == '<') {
                             pre_template = false;
-                            in_template = 1;
+                            in_template += 1;
                         }
                     }
                     else if (in_template) {

@@ -1,5 +1,5 @@
 CXX = /opt/gcc-head/bin/g++
-CXXFLAGS := -std=c++26 -fmodules -freflection -fcontracts -pthread -pedantic -Wno-attributes -Wno-parentheses
+CXXFLAGS := -std=c++29 -fmodules -freflection -fcontracts -pthread -pedantic -Wno-attributes -Wno-parentheses
 
 # 将来実行できるようになるであろうが、今はコンパイルできないコードのリスト
 define FUTURE_LIST
@@ -15,15 +15,29 @@ define FUTURE_LIST
 
 	$(wildcard codes/lang/cpp26/contracts.*.cpp)
 	$(shell find codes/reference/atomic -name '*.cpp26.cpp')
+	$(shell find codes/reference/bit -name '*.cpp29.cpp')
+	$(shell find codes/reference/cfloat -name '*.cpp26.cpp')
+	$(shell find codes/reference/cinttypes -name '*.cpp26.cpp')
+	$(shell find codes/reference/climits -name '*.cpp26.cpp')
 	$(shell find codes/reference/cmath -name '*.cpp26.cpp')
+	$(shell find codes/reference/cstdint -name '*.cpp26.cpp')
+	$(shell find codes/reference/cstdio -name '*.cpp26.cpp')
+	$(shell find codes/reference/cstdlib -name '*.cpp26.cpp')
+	$(shell find codes/reference/cstring -name '*.cpp26.cpp')
+	$(shell find codes/reference/ctime -name '*.cpp26.cpp')
+	$(shell find codes/reference/cuchar -name '*.cpp26.cpp')
 	$(shell find codes/reference/execution/execution -name '*.cpp')
+	$(shell find codes/reference/filesystem -name '*.cpp26.cpp')
 	$(shell find codes/reference/functional -name '*.cpp26.cpp')
+	$(shell find codes/reference/hazard_pointer -name '*.cpp')
+	$(shell find codes/reference/hive -name '*.cpp')
 	$(shell find codes/reference/initializer_list/initializer_list -name '*.cpp26.cpp')
 	$(shell find codes/reference/inplace_vector -name '*.cpp')
 	$(shell find codes/reference/linalg -name '*.cpp')
 	$(shell find codes/reference/mdspan -name '*.cpp')
 	$(shell find codes/reference/random -name '*.cpp26.cpp')
 	$(shell find codes/reference/rcu -name '*.cpp')
+	$(shell find codes/reference/simd -name '*.cpp')
 	$(shell find codes/reference/stacktrace -name '*.cpp')
 	$(shell find codes/reference/stop_token -name '*.cpp26.cpp')
 
@@ -60,6 +74,8 @@ define FUTURE_LIST
 	codes/reference/deque/deque/erase_free.2.cpp20.cpp
 	codes/reference/forward_list/forward_list/erase_free.2.cpp20.cpp
 	codes/reference/list/list/erase_free.2.cpp20.cpp
+	codes/reference/memory/ranges_uninitialized_fill.2.cpp20.cpp
+	codes/reference/memory/ranges_uninitialized_fill_n.2.cpp20.cpp
 	codes/reference/string/basic_string/erase_free.2.cpp20.cpp
 	codes/reference/vector/vector/erase_free.2.cpp20.cpp
 	codes/reference/algorithm/binary_search.2.cpp03.cpp
@@ -188,8 +204,8 @@ define FUTURE_LIST
 	codes/reference/memory/ranges_uninitialized_copy_n.2.cpp20.cpp
 	codes/reference/memory/ranges_uninitialized_move.2.cpp20.cpp
 	codes/reference/memory/ranges_uninitialized_move_n.2.cpp20.cpp
-	codes/reference/memory/ranges_uninitialized_fill.2.cpp20.cpp
-	codes/reference/memory/ranges_uninitialized_fill_n.2.cpp20.cpp
+	codes/reference/memory/ranges_uninitialized_fill.3.cpp20.cpp
+	codes/reference/memory/ranges_uninitialized_fill_n.3.cpp20.cpp
 	codes/reference/memory/ranges_uninitialized_default_construct.2.cpp20.cpp
 	codes/reference/memory/ranges_uninitialized_default_construct_n.2.cpp20.cpp
 	codes/reference/memory/ranges_uninitialized_value_construct.2.cpp20.cpp
@@ -257,16 +273,16 @@ define FUTURE_LIST
 	codes/reference/type_traits/is_within_lifetime.1.cpp26.cpp
 	codes/reference/type_traits/reference_constructs_from_temporary.2.cpp23.cpp
 	codes/reference/scoped_allocator/scoped_allocator_adaptor/op_deduction_guide.1.cpp17.cpp
-	codes/reference/ostream/print.2.cpp23.cpp
-	codes/reference/ostream/println.2.cpp23.cpp
-	codes/reference/print/print.3.cpp23.cpp
-	codes/reference/print/println.3.cpp23.cpp
-	codes/reference/format/runtime_format.1.cpp26.cpp
-	codes/reference/format/format.7.cpp20.cpp
+	codes/reference/meta/apply_result.1.cpp26.cpp
+	codes/reference/meta/define_static_string.1.cpp26.cpp
+	codes/reference/meta/is_applicable_type.1.cpp26.cpp
+	codes/reference/meta/is_nothrow_applicable_type.1.cpp26.cpp
+	codes/reference/ranges/approximately_sized_range.1.cpp26.cpp
 	codes/reference/ranges/filter_view/iterator/op_constructor.1.cpp20.cpp
 	codes/reference/ranges/filter_view/iterator/op_increment.1.cpp20.cpp
 	codes/reference/ranges/filter_view/iterator/op_decrement.1.cpp20.cpp
 	codes/reference/ranges/filter_view/iterator/op_deref.1.cpp20.cpp
+	codes/reference/ranges/reserve_hint.1.cpp26.cpp
 	codes/reference/system_error/error_code/op_assign.1.cpp11.cpp
 	codes/reference/system_error/error_code/op_constructor.1.cpp11.cpp
 	$(wildcard codes/reference/numeric/*_sat.1.cpp26.cpp)

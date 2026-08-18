@@ -7,6 +7,7 @@ paren
 square
 curly
 extract
+mathjax
 )
 
 if [ "$1" = 'clean' ]; then

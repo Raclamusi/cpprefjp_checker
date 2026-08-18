@@ -30,20 +30,23 @@ cd site_generator
 pull_from_upstream .
 pull_from_upstream cpprefjp/site
 pull_from_upstream cpprefjp/image
+./crsearch.json/docker.sh build
 ./crsearch.json/docker.sh run
 
 pull_from_upstream kunai
 kunai_timestamp=$(find kunai \( -path kunai/node_modules -o -path kunai/dist -o -path kunai/.git \) -prune -o -type f -exec stat -f '%m' {} + | sort -n | tail -1)
 rss_timestamp=$(stat -f '%m' cpprefjp/cpprefjp.github.io/rss.xml)
 if [ $kunai_timestamp -gt $rss_timestamp ]; then
+  ./kunai/docker.sh build
   ./kunai/docker.sh install
-  ./kunai/docker.sh run build
+  ./kunai/docker.sh dist
 fi
 
 if [ "$1" = 'nocache' ] && [ -f settings.cpprefjp_local.cache ]; then
   rm settings.cpprefjp_local.cache
 fi
 
-./docker.sh run settings.cpprefjp_local --concurrency=16 | tee ../log.txt
+./docker.sh build
+time ./docker.sh run settings.cpprefjp_local | tee ../log.txt
 warn_branch . cpprefjp/site cpprefjp/image kunai
 ./docker.sh localhost cpprefjp

@@ -64,6 +64,13 @@ int main() {
             constexpr std::string_view red_check_ignore_text_list[] {
                 "chrono::from_stream",
                 "result",
+                "std::cw",
+                "SCNb16",
+                "PRIb16",
+                "PRIB16",
+                "simd::flag_aligned",
+                "zero_element",
+                "uninit_element",
             };
             constexpr std::string_view ignore_suffix_list[] {
                 " (非メンバ関数)",
@@ -669,6 +676,69 @@ int main() {
                 if (text == "MAP_RANK" && href == "/reference/mdspan/submdspan_canonicalize_slices.md") {
                     continue;
                 }
+                if (text == "backend-for" && href == "/reference/execution/execution/task_scheduler/schedule.md") {
+                    continue;
+                }
+                if (text == "r.set_value()" && href == "/reference/execution/execution/parallel_scheduler_replacement/receiver_proxy.md") {
+                    continue;
+                }
+                if (text == "r.set_error" && href == "/reference/execution/execution/parallel_scheduler_replacement/receiver_proxy.md") {
+                    continue;
+                }
+                if (text == "r.set_stopped()" && href == "/reference/execution/execution/parallel_scheduler_replacement/receiver_proxy.md") {
+                    continue;
+                }
+                if (text == "r.execute" && href == "/reference/execution/execution/parallel_scheduler_replacement/bulk_item_receiver_proxy.md") {
+                    continue;
+                }
+                if (text == "SCHED" && href == "/reference/execution/queryable.md") {
+                    continue;
+                }
+                if (text == "TRY-QUERY" && href == "/reference/execution/queryable.md") {
+                    continue;
+                }
+                if (text == "HIDE-SCHED" && href == "/reference/execution/queryable.md") {
+                    continue;
+                }
+                if (text == "ts-domain()" && href == "/reference/execution/execution/task_scheduler/schedule.md") {
+                    continue;
+                }
+                if (text == "start_scheduler_type" && href == "/reference/execution/execution/task.md") {
+                    continue;
+                }
+                if (text == "bitset<N>::reference" && href == "/reference/bitset/bitset/reference.md") {
+                    continue;
+                }
+                if (text == "SCNbN" && href == "/reference/cinttypes/scnb.md") {
+                    continue;
+                }
+                if (text == "concatable" && href == "/reference/ranges/concat_view.md") {
+                    continue;
+                }
+                if ((text == "hl.min" || text == "hl.max" || text == "lim.min" || text == "lim.max") && href == "/reference/hive/hive_limits.md") {
+                    continue;
+                }
+                if (text == "mask_type" && href == "/reference/simd/basic_mask.md") {
+                    continue;
+                }
+                if (text == "<complex>" && href == "/reference/complex/complex.md" && entry.path().parent_path() == "site_generator/cpprefjp/site/reference/simd") {
+                    continue;
+                }
+                if (text == "MAP_RANK" && href == "/reference/mdspan/canonical_slices.md") {
+                    continue;
+                }
+                if (text == "value" && href == "/reference/utility/constant_wrapper.md") {
+                    continue;
+                }
+                if (text == "none" && href == "/reference/locale/locale/category.md.nolink") {
+                    continue;
+                }
+                if (text == "abs" && href == "/reference/cinttypes/imaxabs.md") {
+                    continue;
+                }
+                if (text == "div" && href == "/reference/cinttypes/imaxdiv.md") {
+                    continue;
+                }
                 // constexpr const char* alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_";
                 auto text_small = text;
                 std::ranges::transform(text_small, text_small.begin(), [](unsigned char c) {
@@ -833,7 +903,7 @@ int main() {
                 else if ((text2.starts_with("mapping_type::") || text2.starts_with("map_.")) && href2 == "/reference/mdspan/layoutmapping.md") {
                     continue;
                 }
-                else if (text2.starts_with("std::strong_ordering::") && href2 == "/reference/compare/strong_ordering.md") {
+                else if (text2.contains("strong_ordering::") && href2 == "/reference/compare/strong_ordering.md") {
                     continue;
                 }
                 else if (text2.starts_with("pool_options::") && href2 == "/reference/memory_resource/pool_options.md") {
@@ -891,6 +961,12 @@ int main() {
                     continue;
                 }
                 else if (text2.contains("round_") && href2 == "/reference/limits/float_round_style.md") {
+                    continue;
+                }
+                else if (text2.contains("operator basic_vec") && href2 == "/reference/simd/basic_mask/op_vec.md") {
+                    continue;
+                }
+                else if (text2.contains("flag_") && href2 == "/reference/simd/flags.md") {
                     continue;
                 }
                 else {
@@ -1019,6 +1095,9 @@ int main() {
                     }
                     if (text2.ends_with("-like") && not href2.ends_with("like")) {
                         text2.remove_suffix(5);
+                    }
+                    if (text2.ends_with("_tag") && not href2.ends_with("tag")) {
+                        text2.remove_suffix(4);
                     }
                     if (text2.ends_with("f") && text2.substr(0, text2.size() - 1) == href2) {
                         text2.remove_suffix(1);
@@ -1315,7 +1394,12 @@ int main() {
                         t = "op_or";
                     }
                     else if (t == "operator&" || t.contains(" & ")) {
-                        t = "op_and";
+                        if (href2 == "op_address") {
+                            t = "op_address";
+                        }
+                        else {
+                            t = "op_and";
+                        }
                     }
                     else if (t == "operator^") {
                         t = "op_xor";
@@ -1396,6 +1480,12 @@ int main() {
                     }
                     else if (t == "operator||") {
                         t = "op_logical_or";
+                    }
+                    else if (t == "operator,") {
+                        t = "op_comma";
+                    }
+                    else if (t == "operator->*") {
+                        t = "op_member_pointer";
                     }
                     else if (t.starts_with("operator ")) {
                         auto type = t.substr(9);
